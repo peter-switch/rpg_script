@@ -21,4 +21,6 @@ Ejecuta el script en tu terminal con:
 python rpg.py
 ```
 
-Luego, sigue las instrucciones en pantalla y… ¡que la suerte del dado te acompañe! 🎲  
+Luego, sigue las instrucciones en pantalla y… ¡que la suerte del dado te acompañe! 🎲
+
+¡Seguimos!
