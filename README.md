@@ -1,3 +1,4 @@
+https://github.com/peter-switch/rpg_script_python
 # 🏹 Duelo Épico 🏰  
 
 Pequeño script en Python sin más pretensiones que practicar el uso de **clases y objetos**. Se trata de un sencillo combate por turnos entre un héroe y un enemigo, donde los ataques y el daño dependen de la tirada de un dado.  
