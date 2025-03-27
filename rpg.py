@@ -1,5 +1,6 @@
-import random #importa la libreria random para poder generar numeros aleatorios para el dado
-import time  # Para hacer pausas entre turnos
+import random #Importa la libreria random para poder generar numeros aleatorios para el dado
+import time  #Importa libreria time para hacer pausas de tiempo entre turnos
+
 
 #Creamos la clase Heroe con sus atributos y métodos
 class Heroe:
@@ -17,10 +18,10 @@ class Heroe:
 
     #Método para lanzar el dado rojo de 20 caras
     def dado_rojo(self):
-        print(f'{self.nombre} lanza el dado rojo...')
+        print(f'🎲 {self.nombre} lanza el dado rojo...')
         return random.randint(1,20)
     
-    def  pausa_dramatica(self):
+    def  pausa_dramatica(self):#Método para hacer una pausa dramática de unos segundos
             print(".", end="")
             time.sleep(1.5)
             print(".", end="")
@@ -28,10 +29,14 @@ class Heroe:
             print(".")  
 
     def ataca_a(self, Enemigo):
-        print(f"\nTurno de {self.nombre}. ¡Elige tu ataque!")
-        print(f"1.{self.ataque01}:{self.valor_ataque01} de daño. Dado +5")
-        print(f"2.{self.ataque02}:{self.valor_ataque02} de daño. Dado +12")
-        ataque_seleccionado=int(input("Selecciona un ataque: "))
+        # Imprimir en color rojo
+        print(f"\033[31m\n¡Vamos {self.nombre}! ¡Elige tu ataque!\n\033[0m")
+
+        # Imprimir en color verde usando código ANSI
+        print(f"\033[32m🏹 1.{self.ataque01}: -{self.valor_ataque01} de daño. Dado +5\033[0m")
+        print(f"\033[32m🏹 2.{self.ataque02}: -{self.valor_ataque02} de daño. Dado +12\033[0m")
+
+        ataque_seleccionado=int(input("\n> Ataco con: \n"))
 
         tirada=self.dado_rojo() #Tirada del dado rojo y almacenamiento en la variable en 1tirada
 
@@ -55,7 +60,7 @@ class Heroe:
             time.sleep(1.5)
             print(".")
         else:
-            print(f"Has fallado en tu ataque a {Enemigo.nombre}.")  
+            print(f"Has fallado en tu ataque a {Enemigo.nombre}. Recuerda que debes introducir el número del ataque y superar la tirada de tu dado. Escribe 1 o 2 para atacar.")  
            
 
 class Enemigo:
@@ -76,7 +81,7 @@ class Enemigo:
         print(f'Hola, soy {self.nombre}')
 
     def dado_negro(self):
-        print(f'{self.nombre} lanza el dado negro.')
+        print(f'\n🎲 {self.nombre} lanza el dado negro.\n')
         return random.randint(1,10)
     
 
