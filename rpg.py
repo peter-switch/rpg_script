@@ -38,12 +38,16 @@ class Heroe:
             print(f"\033[32m🏹 1.{self.ataque01}: -{self.valor_ataque01} de daño. Dado +5\033[0m")
             print(f"\033[32m🏹 2.{self.ataque02}: -{self.valor_ataque02} de daño. Dado +12\033[0m")
             
-            ataque_seleccionado=int(input("\n> Ataco con: \n"))
-            
-            if ataque_seleccionado in (1,2):#Si el ataque coincide con los valores de la tupla salimos del bucle
-                break
-            else:#Si no coinde, imprime advertencia y continua el bucle
-                print("\n\033[31mDebes seleccionar el número de ataque de deseas.(1 o 2)\033[0m\n")
+            try:
+                ataque_seleccionado = int(input("\n> Ataco con: \n"))
+                if ataque_seleccionado in (1, 2):  # Si la elección es válida, salir del bucle
+                    break
+
+            except ValueError:
+
+                pass  # Si hay error, simplemente vuelve a pedir la entrada
+
+    print("\n\033[31mDebes seleccionar el número de ataque que deseas (1 o 2).\033[0m\n")
                 
                 
 
@@ -118,6 +122,7 @@ class Enemigo:
 def combate(player01,player02):
     dado_p01=random.randint(1,12)
     dado_p02=random.randint(1,12)
+
 #El siguiente condicional estable quién comienza atacando primero y lo alterna a lo largo del juego
     if dado_p01>dado_p02:
         player01.turno = True
@@ -128,7 +133,7 @@ def combate(player01,player02):
         player01.turno = False
         player02.turno = True
 
-    while player01.vida>0 and player02.vida>0:
+    while player01.vida>0 and player02.vida>0:#Mientra la vida de cada personaje sea mayor que cero se ejecuta el bucle
         if player01.turno==True:
             player01.ataca_a(player02)
             player01.turno=False
@@ -138,13 +143,16 @@ def combate(player01,player02):
             player01.turno=True
             player02.turno=False
     
-    # Determinar ganador
+    # Determinar ganador. Si alguno de los dos contricantes tiene la vida en cero o menos se ejecuta este if.
     if player01.vida > 0:
-        print(f"¡{player01.nombre} ha ganado el combate!")
+        print(f"\033[32m¡{player01.nombre} ha ganado el combate! ¡Una victoria épica!\033[0m")  # Verde
     else:
-        print(f"¡{player02.nombre} ha ganado el combate!")
+        print(f"\033[31m¡{player02.nombre} ha ganado el combate! La próxima vez será.\033[0m")  # Rojo
 
-print("\n🏹 ¡Bienvenidos a Duelo Épico! 🏰\n")
+
+
+#Menú inicial
+print("\n🏹 ¡BIENVENDIO A DUELO ÉPICO! 🏰\n")
 
 nombre_player01=(input("> Nombre de tu héroe: ").upper())
 ataque01_player01=(input("> Nombre de tu ataque +2: ").upper())
@@ -152,7 +160,9 @@ ataque02_player01=(input("> Nombre de tu ataque +4: ").upper())
 
 nombre_player02=(input("> Nombre de tu enemigo: ").upper())
 
+#Creación de los objetos player01 y player02 en base a los inputs del usuario
 player01=Heroe(nombre_player01,ataque01_player01,ataque02_player01)
 player02=Enemigo(nombre_player02)
 
-combate(player01,player02) #Llama ala función combate() con contendientes como parámetro
+#Llama a la función combate() con los contendientes como parámetro
+combate(player01,player02) 
