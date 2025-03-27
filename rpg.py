@@ -1,6 +1,7 @@
 import random #importa la libreria random para poder generar numeros aleatorios para el dado
 import time  # Para hacer pausas entre turnos
 
+#Creamos la clase Heroe con sus atributos y métodos
 class Heroe:
     def __init__(self, nombre,nombre_ataque01,nombre_ataque02):
         self.nombre = nombre
@@ -12,15 +13,14 @@ class Heroe:
         self.turno=False
 
     def saludar(self):
-        print(f'Hola, soy {self.nombre}')
+        print(f'Hola, soy el legendario héroe conocido como {self.nombre}')
 
-
+    #Método para lanzar el dado rojo de 20 caras
     def dado_rojo(self):
-        print(f'{self.nombre} lanza dado rojo')
+        print(f'{self.nombre} lanza el dado rojo...')
         return random.randint(1,20)
     
     def  pausa_dramatica(self):
-            
             print(".", end="")
             time.sleep(1.5)
             print(".", end="")
@@ -55,7 +55,7 @@ class Heroe:
             time.sleep(1.5)
             print(".")
         else:
-            print(f"Has fallado en tu ataque a {Enemigo.nombre}")  
+            print(f"Has fallado en tu ataque a {Enemigo.nombre}.")  
            
 
 class Enemigo:
@@ -76,7 +76,7 @@ class Enemigo:
         print(f'Hola, soy {self.nombre}')
 
     def dado_negro(self):
-        print(f'{self.nombre} lanza dado negro')
+        print(f'{self.nombre} lanza el dado negro.')
         return random.randint(1,10)
     
 
@@ -106,11 +106,11 @@ class Enemigo:
 def combate(player01,player02):
     dado_p01=random.randint(1,12)
     dado_p02=random.randint(1,12)
-#Cambios de turno EN EL JUEGO#Cambios de turno EN EL JUEGO
+#El siguiente condicional estable quién comienza atacando primero y lo alterna a lo largo del juego
     if dado_p01>dado_p02:
         player01.turno = True
         player02.turno = False
-        print(f"Es el turno de ataque de {player01.nombre}.")
+        print(f"\nEs el turno de ataque es de {player01.nombre}.")
         
     else:
         player01.turno = False
@@ -132,14 +132,14 @@ def combate(player01,player02):
     else:
         print(f"¡{player02.nombre} ha ganado el combate!")
 
-
-nombre_player01=str(input("Nombre de tu héroe: "))
-ataque01_player01=str(input("Nombre de tu ataque +2: "))
-ataque02_player01=str(input("Nombre de tu ataque +4: "))
+print("\n🏹 ¡Bienvenidos a Duelo Épico! 🏰\n")
+nombre_player01=str(input("> Nombre de tu héroe: "))
+ataque01_player01=str(input("> Nombre de tu ataque +2: "))
+ataque02_player01=str(input("> Nombre de tu ataque +4: "))
 
 player01=Heroe(nombre_player01,ataque01_player01,ataque02_player01)
 
-nombre_player02=str(input("Nombre de tu enemigo: "))
+nombre_player02=str(input("> Nombre de tu enemigo: "))
 player02=Enemigo(nombre_player02)
 
 combate(player01,player02)
