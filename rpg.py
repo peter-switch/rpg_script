@@ -45,9 +45,10 @@ class Heroe:
 
             except ValueError:
 
-                pass  # Si hay error, simplemente vuelve a pedir la entrada
+                print("\nDebes seleccionar el número de ataque que deseas (1 o 2).\n")
+                # Si hay error, simplemente vuelve a pedir la entrada
+                self.pausa_dramatica() #Pausa dramática
 
-    print("\n\033[31mDebes seleccionar el número de ataque que deseas (1 o 2).\033[0m\n")
                 
                 
 
@@ -70,7 +71,7 @@ class Heroe:
             print(f"{Enemigo.nombre} ha perdido {self.valor_ataque02} puntos de vida. Aún le quedan {Enemigo.vida} puntos de vida.")
             self.pausa_dramatica() #Pausa dramática
         else:
-            print(f"Has fallado en tu ataque a {Enemigo.nombre}. Recuerda que debes introducir el número del ataque y superar la tirada de tu dado. Escribe 1 o 2 para atacar.")  
+            print(f"Has fallado en tu ataque a {Enemigo.nombre}. Escribe 1 ó 2 para atacar.")  
             self.pausa_dramatica() #Pausa dramática
 
 class Enemigo:
@@ -145,9 +146,24 @@ def combate(player01,player02):
     
     # Determinar ganador. Si alguno de los dos contricantes tiene la vida en cero o menos se ejecuta este if.
     if player01.vida > 0:
-        print(f"\033[32m¡{player01.nombre} ha ganado el combate! ¡Una victoria épica!\033[0m")  # Verde
+        print(f"\n\033[32m¡{player01.nombre} ha ganado el combate! ¡Una victoria épica!\033[0m\n")  # Verde
     else:
-        print(f"\033[31m¡{player02.nombre} ha ganado el combate! La próxima vez será.\033[0m")  # Rojo
+        print(f"\n\033[31m¡{player02.nombre} ha ganado el combate! La próxima vez será.\033[0m\n")
+
+    #Pregunta al usuario si quiere jugar de nuevo
+    resp01=input("¿Quieres jugar de nuevo? (s/n) ").lower()
+
+    if resp01=="s":
+
+        combate(player01,player02) 
+
+    elif resp01=="n":
+
+        print("¡\nHasta la próxima!")
+
+        exit()
+    else:
+        print("\nRespuesta no válida. Escribe 's' para jugar de nuevo o 'n' para salir.")
 
 
 
